@@ -41,19 +41,19 @@ const ProductForm = ({
       <Row className="g-3">
         <Col md={6}>
           <Form.Group>
-            <Form.Label>Product name</Form.Label>
+            <Form.Label>Tên sản phẩm</Form.Label>
             <Form.Control
               name="title"
               value={values.title}
               onChange={handleChange}
-              placeholder="e.g. Wireless Mouse"
+              placeholder="Ví dụ: Chuột không dây"
               required
             />
           </Form.Group>
         </Col>
         <Col md={3}>
           <Form.Group>
-            <Form.Label>Price ($)</Form.Label>
+            <Form.Label>Giá ($)</Form.Label>
             <Form.Control
               type="number"
               step="0.01"
@@ -67,18 +67,18 @@ const ProductForm = ({
         </Col>
         <Col md={3}>
           <Form.Group>
-            <Form.Label>Category</Form.Label>
+            <Form.Label>Danh mục</Form.Label>
             <Form.Control
               name="category"
               value={values.category}
               onChange={handleChange}
-              placeholder="e.g. electronics"
+              placeholder="Ví dụ: electronics"
             />
           </Form.Group>
         </Col>
         <Col md={8}>
           <Form.Group>
-            <Form.Label>Image URL</Form.Label>
+            <Form.Label>URL ảnh</Form.Label>
             <Form.Control
               name="image"
               value={values.image}
@@ -89,7 +89,7 @@ const ProductForm = ({
         </Col>
         <Col md={12}>
           <Form.Group>
-            <Form.Label>Description</Form.Label>
+            <Form.Label>Mô tả</Form.Label>
             <Form.Control
               as="textarea"
               rows={2}
@@ -106,7 +106,7 @@ const ProductForm = ({
         </Button>
         {onCancel && (
           <Button type="button" variant="outline-secondary" onClick={onCancel}>
-            Cancel
+            Hủy
           </Button>
         )}
       </div>

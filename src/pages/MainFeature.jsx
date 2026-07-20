@@ -8,8 +8,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import ProductItem from "../components/ProductItem";
 import ProductItemClass from "../components/ProductItemClass";
 import ProductForm from "../components/ProductForm";
-
-const API_URL = "https://fakestoreapi.com/products";
+import { fetchProducts as getProducts } from "../api/productApi";
 
 /**
  * Main Feature page.
@@ -28,11 +27,7 @@ const MainFeature = () => {
   const fetchProducts = () => {
     setLoading(true);
     setError(null);
-    fetch(API_URL)
-      .then((res) => {
-        if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
-        return res.json();
-      })
+    getProducts()
       .then((data) => setProducts(data))
       .catch((err) => setError(err.message || "Failed to load products."))
       .finally(() => setLoading(false));
@@ -53,23 +48,23 @@ const MainFeature = () => {
     setShowForm(false);
   };
 
-  if (loading) return <Loader label="Fetching products from the API..." />;
+  if (loading) return <Loader label="Đang tải sản phẩm từ API..." />;
   if (error) return <ErrorMessage message={error} onRetry={fetchProducts} />;
 
   return (
     <Container className="py-4">
       <div className="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-        <h2 className="mb-0">Main Feature — Product List</h2>
+        <h2 className="mb-0">Tính năng chính — Danh sách sản phẩm</h2>
         <Button
           variant={showForm ? "outline-secondary" : "success"}
           onClick={() => setShowForm((prev) => !prev)}
         >
-          {showForm ? "Close form" : "+ Add product"}
+          {showForm ? "Đóng form" : "+ Thêm sản phẩm"}
         </Button>
       </div>
 
       {showForm && (
-        <ProductForm submitLabel="Add product" onSubmit={handleAddProduct} />
+        <ProductForm submitLabel="Thêm sản phẩm" onSubmit={handleAddProduct} />
       )}
 
       {/* LO2: class-component version of the reusable product display,

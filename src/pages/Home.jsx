@@ -5,44 +5,48 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import laptop1Img from "../assets/images/laptop1.png";
+import laptop2Img from "../assets/images/laptop2.jpg";
+import laptop3Img from "../assets/images/laptop3.png";
+import laptop4Img from "../assets/images/laptop4.png";
+
+const previewImages = [laptop1Img, laptop2Img, laptop3Img, laptop4Img];
+
 const Home = () => {
   return (
     <Container className="pt-4">
       <div className="hero-section text-center">
-        <h1 className="fw-bold">Welcome to Product Explorer</h1>
-        <p className="lead mb-4">
-          A small full-stack-feeling React app built for the FER202 "Custom
-          React Web Application" assignment — browse products fetched live
-          from a public API, save favorites, and manage your own list.
+        <div className="hero-badge">Dự án FER202</div>
+        <h1 className="fw-bold">Trình duyệt sản phẩm</h1>
+        <p className="hero-subtitle text-muted">
+          Giao diện React hiện đại với dữ liệu API trực tiếp, yêu thích và quản lý sản phẩm nhanh.
         </p>
         <Button as={Link} to="/feature" size="lg" variant="light">
-          Explore Products
+          Xem sản phẩm
         </Button>
       </div>
 
-      <Row className="text-center g-4 mb-4">
-        <Col md={4}>
-          <h5>🔎 Live Data</h5>
-          <p className="text-muted">
-            Products are fetched from a public REST API with proper loading
-            and error handling.
-          </p>
-        </Col>
-        <Col md={4}>
-          <h5>❤️ Favorites</h5>
-          <p className="text-muted">
-            A global Redux store keeps track of your favorite products across
-            every page, summarized right in the navbar.
-          </p>
-        </Col>
-        <Col md={4}>
-          <h5>✏️ Full CRUD</h5>
-          <p className="text-muted">
-            Add new products, delete existing ones, view full details, and
-            edit information — all in one place.
-          </p>
-        </Col>
-      </Row>
+      <div className="featured-section py-4 px-3">
+        <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
+          <div>
+            <p className="text-uppercase text-muted mb-2">Featured collection</p>
+            <h2 className="mb-0">Modern laptop visuals</h2>
+          </div>
+          <Button as={Link} to="/feature" variant="outline-primary">
+            Browse all products
+          </Button>
+        </div>
+
+        <Row className="g-3">
+          {previewImages.map((src, index) => (
+            <Col key={src} xs={12} sm={6} md={3}>
+              <div className="preview-image-card p-3">
+                <img src={src} alt={`Laptop ${index + 1}`} className="img-fluid rounded" />
+              </div>
+            </Col>
+          ))}
+        </Row>
+      </div>
     </Container>
   );
 };

@@ -19,22 +19,22 @@ const AppNavbar = () => {
     <Navbar bg="dark" variant="dark" expand="md" className="px-3">
       <Container>
         <Navbar.Brand as={NavLink} to="/">
-          Product Explorer
+          Trình duyệt sản phẩm
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="main-navbar" />
         <Navbar.Collapse id="main-navbar">
           <Nav className="ms-auto align-items-md-center gap-2">
             <Nav.Link as={NavLink} to="/" className={linkClass} end>
-              Home
+              Trang chủ
             </Nav.Link>
             <Nav.Link as={NavLink} to="/feature" className={linkClass}>
-              Main Feature
+              Sản phẩm
             </Nav.Link>
             <Nav.Link as={NavLink} to="/about" className={linkClass}>
-              About
+              Giới thiệu
             </Nav.Link>
             <span className="text-light">
-              Favorites{" "}
+              Yêu thích{" "}
               <Badge bg="danger" pill>
                 {favoriteCount}
               </Badge>

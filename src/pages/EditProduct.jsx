@@ -5,6 +5,7 @@ import Alert from "react-bootstrap/Alert";
 import Loader from "../components/Loader";
 import ErrorMessage from "../components/ErrorMessage";
 import ProductForm from "../components/ProductForm";
+import { fetchProductById, updateProduct } from "../api/productApi";
 
 const EditProduct = () => {
   const { id } = useParams();
@@ -18,63 +19,50 @@ const EditProduct = () => {
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${id}`)
-      .then((res) => {
-        if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
-        return res.json();
-      })
+    fetchProductById(id)
       .then((data) => setProduct(data))
-      .catch((err) => setError(err.message || "Failed to load product."))
+      .catch((err) => setError(err.message || "Không thể tải sản phẩm."))
       .finally(() => setLoading(false));
   }, [id]);
 
   const handleSave = (updatedValues) => {
     setSaving(true);
     setSaveError(null);
-    // LO7-style error handling applied to a PUT request as well.
-    fetch(`https://fakestoreapi.com/products/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedValues),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error(`Update failed with status ${res.status}`);
-        return res.json();
-      })
+    updateProduct(id, updatedValues)
       .then(() => {
         setSaved(true);
         // fakestoreapi.com is a mock API: it accepts the PUT and echoes a
         // response but does not actually persist changes server-side.
         setTimeout(() => navigate(`/feature/${id}`), 1200);
       })
-      .catch((err) => setSaveError(err.message || "Failed to save changes."))
+      .catch((err) => setSaveError(err.message || "Không thể lưu thay đổi."))
       .finally(() => setSaving(false));
   };
 
-  if (loading) return <Loader label="Loading product for editing..." />;
+  if (loading) return <Loader label="Đang tải sản phẩm để sửa..." />;
   if (error)
     return (
       <Container className="py-4">
         <ErrorMessage message={error} />
-        <Link to="/feature">&larr; Back to list</Link>
+        <Link to="/feature">&larr; Trở lại danh sách</Link>
       </Container>
     );
 
   return (
     <Container className="py-4" style={{ maxWidth: 700 }}>
-      <h2 className="mb-3">Edit product</h2>
+      <h2 className="mb-3">Sửa sản phẩm</h2>
 
       {saved && (
         <Alert variant="success">
-          Saved! (Note: this is a mock API and won't persist after refresh.)
-          Redirecting back to details...
+          Lưu thành công! (Lưu ý: đây là API giả và sẽ không được ghi lại sau khi tải lại.)
+          Đang quay về trang chi tiết...
         </Alert>
       )}
       {saveError && <ErrorMessage message={saveError} />}
 
       <ProductForm
         initialValues={product}
-        submitLabel={saving ? "Saving..." : "Save changes"}
+        submitLabel={saving ? "Đang lưu..." : "Lưu thay đổi"}
         onSubmit={handleSave}
         onCancel={() => navigate(`/feature/${id}`)}
       />

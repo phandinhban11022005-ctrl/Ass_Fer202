@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 import Loader from "../components/Loader";
 import ErrorMessage from "../components/ErrorMessage";
+import { fetchProductById } from "../api/productApi";
 import { toggleFavorite, selectIsFavorite } from "../store/favoritesSlice";
 
 const ProductDetail = () => {
@@ -22,7 +23,7 @@ const ProductDetail = () => {
     // so only fetch for real/positive ids.
     if (Number(id) < 0) {
       setError(
-        "This product only exists locally and can't be reloaded from the API. Go back to the list to view it."
+        "Sản phẩm này chỉ tồn tại cục bộ và không thể tải lại từ API. Vui lòng quay lại danh sách."
       );
       setLoading(false);
       return;
@@ -30,22 +31,18 @@ const ProductDetail = () => {
 
     setLoading(true);
     setError(null);
-    fetch(`https://fakestoreapi.com/products/${id}`)
-      .then((res) => {
-        if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
-        return res.json();
-      })
+    fetchProductById(id)
       .then((data) => setProduct(data))
-      .catch((err) => setError(err.message || "Failed to load product."))
+      .catch((err) => setError(err.message || "Không thể tải sản phẩm."))
       .finally(() => setLoading(false));
   }, [id]);
 
-  if (loading) return <Loader label="Loading product details..." />;
+  if (loading) return <Loader label="Đang tải chi tiết sản phẩm..." />;
   if (error) return (
     <Container className="py-4">
       <ErrorMessage message={error} />
       <Link to="/feature" className="btn btn-outline-primary">
-        &larr; Back to list
+        &larr; Trở lại danh sách
       </Link>
     </Container>
   );
@@ -56,7 +53,7 @@ const ProductDetail = () => {
   return (
     <Container className="py-4" style={{ maxWidth: 800 }}>
       <Link to="/feature" className="d-inline-block mb-3">
-        &larr; Back to list
+        &larr; Trở lại danh sách
       </Link>
       <div className="d-flex flex-column flex-md-row gap-4">
         <div
@@ -83,10 +80,10 @@ const ProductDetail = () => {
               variant={isFavorite ? "danger" : "outline-danger"}
               onClick={() => dispatch(toggleFavorite(Number(id)))}
             >
-              {isFavorite ? "♥ Favorited" : "♡ Add to favorites"}
+              {isFavorite ? "♥ Đã yêu thích" : "♡ Thêm yêu thích"}
             </Button>
             <Button as={Link} to={`/feature/${id}/edit`} variant="primary">
-              Edit product
+              Sửa sản phẩm
             </Button>
           </div>
         </div>

@@ -4,10 +4,10 @@ import Container from "react-bootstrap/Container";
 
 const NotFound = () => (
   <Container className="py-5 text-center">
-    <h2>404 — Page not found</h2>
-    <p className="text-muted">The page you're looking for doesn't exist.</p>
+    <h2>404 — Không tìm thấy trang</h2>
+    <p className="text-muted">Trang bạn đang tìm không tồn tại.</p>
     <Link to="/" className="btn btn-primary">
-      Go home
+      Về trang chủ
     </Link>
   </Container>
 );

@@ -1,36 +1,47 @@
 .app-main {
   min-height: calc(100vh - 160px);
-  padding-bottom: 2rem;
+  padding: 2rem 0 3rem;
+  background: #f4f6f8;
+}
+
+body {
+  background: #f4f6f8;
 }
 
 .app-footer {
-  background-color: #212529;
-  color: #adb5bd;
+  background-color: #20232a;
+  color: #cdd2d8;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.app-footer small {
+  display: block;
+  opacity: 0.75;
 }
 
 /* Custom-styled component per LO4: hand-written CSS (not just Bootstrap
    classes) applied to the product card component. */
 .product-card {
   border: none;
-  border-radius: 14px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   height: 100%;
 }
 
 .product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
 }
 
 .product-card__image-wrap {
-  background: #fff;
+  background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 200px;
-  padding: 1rem;
+  height: 220px;
+  padding: 1.25rem;
 }
 
 .product-card__image-wrap img {
@@ -41,19 +52,153 @@
 
 .product-card__price {
   font-weight: 700;
-  color: #d6336c;
-}
-
-.featured-card {
-  border-left: 6px solid #0d6efd;
-  border-radius: 10px;
-  background: #fff;
+  color: #0d6efd;
 }
 
 .hero-section {
-  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  background: linear-gradient(135deg, #3b82f6, #5b21b6);
   color: #fff;
+  border-radius: 24px;
+  padding: 4rem 3rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 24px 80px rgba(55, 65, 81, 0.14);
+}
+
+.hero-section {
+  background: linear-gradient(135deg, #0d6efd, #7c3aed, #1d4ed8);
+  color: #ffffff;
+  border-radius: 30px;
+  padding: 4rem 2.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 24px 100px rgba(30, 41, 59, 0.18);
+}
+
+.hero-section h1 {
+  font-size: clamp(3rem, 5vw, 4.2rem);
+  letter-spacing: -0.06em;
+  margin-bottom: 1rem;
+}
+
+.hero-section p {
+  max-width: 680px;
+  margin: 0 auto 1.75rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+.hero-section .btn-light {
+  background: rgba(255, 255, 255, 0.98);
+  color: #1f2937;
+  font-weight: 700;
+  padding: 1rem 2.2rem;
+  border-radius: 999px;
+  box-shadow: 0 24px 40px rgba(255, 255, 255, 0.12);
+}
+
+.hero-section .btn-light:hover {
+  background: #ffffff;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.12);
+  color: #e0e7ff;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.featured-section {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 2.2rem;
+  box-shadow: 0 28px 90px rgba(15, 23, 42, 0.08);
+}
+
+.featured-section h2 {
+  margin-bottom: 0.85rem;
+}
+
+.featured-section p {
+  color: #64748b;
+}
+
+.preview-image-card {
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  border-radius: 22px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.preview-image-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+}
+
+.preview-image-card img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.featured-section h4 {
+  margin-bottom: 1.5rem;
+}
+
+.preview-image-card {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
   border-radius: 18px;
-  padding: 3rem 2rem;
-  margin-bottom: 2rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.preview-image-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.preview-image-card img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 3rem 1.25rem;
+  }
+
+  .home-highlight-card {
+    min-height: auto;
+  }
+}
+
+.preview-image-card {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-image-card img {
+  max-height: 120px;
+  width: auto;
 }
